@@ -83,16 +83,16 @@ export default function Dropzone({
 		onDrop,
 		accept: { "image/*": [] },
 		multiple: true,
+		noClick: true,
 	});
 
 	return (
 		<div className="space-y-4">
 			<div
 				{...dropzone.getRootProps()}
-				className="border-2 border-dashed p-6 rounded-xl cursor-pointer text-center transition bg-white hover:bg-blue-50"
+				className="border-2 border-dashed p-6 rounded-xl text-center transition bg-white hover:bg-blue-50"
 			>
-				<input {...dropzone.getInputProps()} />
-				<p className="text-gray-600">Görselleri buraya sürükle ya da tıkla</p>
+				<p className="text-gray-600">Görselleri Buraya Sürükle</p>
 			</div>
 
 			<SortableImageList
