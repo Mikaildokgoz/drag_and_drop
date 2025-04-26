@@ -23,10 +23,12 @@ export default function ImagePreview({
 	const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 
 	useEffect(() => {
-		const objectUrl = URL.createObjectURL(file);
-		setPreviewUrl(objectUrl);
+		if (file instanceof File) {
+			const objectUrl = URL.createObjectURL(file);
+			setPreviewUrl(objectUrl);
 
-		return () => URL.revokeObjectURL(objectUrl);
+			return () => URL.revokeObjectURL(objectUrl);
+		}
 	}, [file]);
 
 	useEffect(() => {
@@ -41,7 +43,7 @@ export default function ImagePreview({
 		<div className="relative rounded-xl overflow-hidden border shadow-sm group bg-white">
 			<img
 				src={previewUrl}
-				alt={file.name}
+				alt={file?.name}
 				className="object-cover w-full h-32 rounded-lg"
 			/>
 			{isUploaded && (
